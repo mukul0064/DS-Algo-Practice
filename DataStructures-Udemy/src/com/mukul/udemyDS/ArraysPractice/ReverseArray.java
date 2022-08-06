@@ -19,13 +19,48 @@ public class ReverseArray {
 //Giving some new lines for better visual
 			System.out.println();
 			System.out.println();
-//**Reverse Array Method
-		int[] reverseArray = ReverseArray(array);	
-			System.out.println("Reverse Array is :" + Arrays.toString(reverseArray));
+//**Reverse Array Methods 1
+		int[] reverseArray = ReverseArrayMethodOne(array);	
+		System.out.println("Reverse Array by method 1 :" + Arrays.toString(reverseArray));
+//Giving some line for better visual
+		System.out.println();
+		System.out.println();
+//**Reverse Array Method 2
+		reverseArray = ReverseArrayMethodTwo(array);
+		System.out.println("Reverse Array by method 2 :" + Arrays.toString(reverseArray));
+
 	}
-	
-//***Reverse Array Algorithm Implementation***
-	private static int[] ReverseArray(int[] array) throws Exception {
+
+//***Reverse Array by Algorithm with no extra data store using same array which is passed (Means using constant memory)	
+//***Time Complexity is o(N) in worst and o(N/2) as best
+//***Space Complexity is same is earlier
+	private static int[] ReverseArrayMethodOne(int[] array) {
+//		firstly create two integer variables for lower and higher index
+//		use while loop to run as index/2 that is lower index < higher index
+//		create swap method to swap two variables
+//		increment lower index in while loop
+//		decrement higher index in while loop
+//		after loop ends return the same array which was passed by the user
+		int lowerIndex = 0;
+		int higherIndex = array.length -1;
+		while(lowerIndex < higherIndex) {
+			swap(array, lowerIndex, higherIndex);
+			lowerIndex ++;
+			higherIndex --;
+		}
+		return array;
+	}
+
+	private static void swap(int[] array, int lowerIndex, int higherIndex) {
+	int temp = array[lowerIndex];
+	array[lowerIndex] = array[higherIndex];
+	array[higherIndex]=temp;	
+}
+
+//***Reverse Array Direct Algorithm by using another array***
+//***Time Complexity is o(N) all round
+//***Space Complexity is increased
+	private static int[] ReverseArrayMethodTwo(int[] array) throws Exception {
 		//calculate the size of the given array
 		//create another array of same size
 		//instantiate first index of the newly created array as integer variable
